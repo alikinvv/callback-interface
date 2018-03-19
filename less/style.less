@@ -1,0 +1,231 @@
+body {
+	overflow: hidden;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+	position: absolute; 
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: pointer;	
+	&.animate {
+		pointer-events: none;
+		.call {
+			width: 400px;
+			height: 400px;
+			opacity: 1;
+			overflow: initial;
+			transition: all 800ms;
+			p, span { 
+			  transform: scale(1);
+			}
+		}
+		.phone {
+			animation: rotate 0.5s linear 0s forwards;  
+			&:after {
+				width: 0;
+				height: 0;
+			}
+			&:before {
+				width: 0;
+				height: 0;
+			}
+		}
+	}
+}
+
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;   
+  animation: ellipsis steps(4,end) 2s infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+	position: absolute;
+}
+
+.close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	&:before, &:after {
+		content: '';
+		display: block;
+		width: 4px;
+		height: 40px;
+		background-color: #37dab4;
+		position: absolute;
+    border-radius: 25px;
+	}
+	&:before {
+		transform: rotate(45deg);
+	}
+	&:after {
+		transform: rotate(-45deg);
+	}
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.05em;    
+  }
+}
+
+.call {
+	width: 0;
+	height: 0;
+	background: #37dab4;
+	border-radius: 50%;
+	box-shadow: 0 0 40px 0 #b0e8db;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;	
+	flex-wrap: wrap;
+	flex-direction: column;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	transition: all 0.5s;
+	transition-delay: 0.2s;
+	transform-origin: 50% 50%;
+	opacity: 0;
+	overflow: hidden;
+	ponter-events: none;
+	&:after {
+		content: '';
+		display: block;
+		width: 500px;
+		height: 500px;
+		position: absolute;
+		border-radius: 50%;
+		background: rgba(55, 218, 180, 0.1);
+		transform-origin: 50% 50%;
+		z-index: -1;
+		transition: all 500ms;
+		mix-blend-mode: color;
+		animation: scale-after 3s ease-out 3s infinite normal; 
+	}
+	&:before { 
+		content: '';
+		display: block;
+		width: 470px;
+		height: 470px;
+		position: absolute;
+		border-radius: 50%;
+		background: rgba(55, 218, 180, 0.1);
+		transform-origin: 50% 50%;
+		z-index: -1; 
+		transition: all 500ms;
+		animation: scale-before 3s ease-in-out 3.5s infinite normal;
+		mix-blend-mode: color;
+	}
+	p {
+		color: #fff;
+		font-weight: bold;
+		font-size: 100px;
+		margin: 0;
+		transform: scale(0);
+		transform-origin: 50% 50%;
+		transition: all 0.5s;
+		transition-delay: 1s;
+	}
+	span:not(.counter) {
+		display: block;
+		color: #fff;
+		font-size: 30px;
+		font-weight: 100;
+		transform: scale(0);
+		transform-origin: 50% 50%;
+		transition: all 0.5s;
+		margin-left: -15px;
+    margin-top: 10px;
+		transition-delay: 1s;
+	}
+}
+
+.phone {
+	width: 200px;
+	height: 200px;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 40px 0 #b0e8db;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;	
+	transition: all 3s;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	transform-origin: 30% 55%;
+	img {width: 80%}	
+	&:after {
+		content: '';
+		display: block;
+		width: 300px;
+		height: 300px;
+		position: absolute;
+		border-radius: 50%;
+		background: rgba(55, 218, 180, 0.1);
+		transform-origin: 50% 50%;
+		z-index: -1;
+		transition: all 500ms;
+		animation: scale-after 3s ease-out 0s infinite normal;
+		mix-blend-mode: color;
+	}
+	&:before {
+		content: '';
+		display: block;
+		width: 270px;
+		height: 270px;
+		position: absolute;
+		border-radius: 50%;
+		background: rgba(55, 218, 180, 0.1);
+		transform-origin: 50% 50%;
+		z-index: -1; 
+		transition: all 500ms;
+		animation: scale-before 3s ease-in-out 0.5s infinite normal;
+		mix-blend-mode: color;
+	}
+}
+
+@keyframes scale-after {
+  0% {transform: scale(1)}
+  35% {transform: scale(0.95)}
+  75% {transform: scale(1.05)}
+  100% {transform: scale(1)}
+}
+
+@keyframes scale-before {
+  0% {transform: scale(1)}
+  35% {transform: scale(0.92)}
+  75% {transform: scale(1.07)}
+  100% {transform: scale(1)}
+}
+
+@keyframes width-after {
+	to {
+		width: 300px;
+		height: 300px;
+	}
+}
+
+@keyframes width-before {
+	to {
+		width: 270px;
+		height: 270px;
+	}
+}
+ 
+@keyframes rotate {
+	to {
+		transform: rotate(180deg);
+		width: 0;
+		height: 0;
+	}
+} 
