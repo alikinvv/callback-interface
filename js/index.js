@@ -1,17 +1,15 @@
-$('.wrapper').click(function() {
-	$(this).toggleClass('animate');
+$('body').on('click', '.wrapper', function() {
+	$(this).toggleClass('animate');	
 	$('.counter').text('8');
+
 	setTimeout(function() {
 		$('.counter').each(function() {
-			var $this = $(this),
-					countTo = $this.attr('data-count');
+			var $this = $(this);
+			var countTo = $this.attr('data-count');
 
 			$({ countNum: $this.text()}).animate({
 				countNum: countTo
-			},
-
-			{
-
+			}, {
 				duration: 5000,
 				easing:'linear',
 				step: function() {
